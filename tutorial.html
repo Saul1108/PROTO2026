@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial de versión pública - INFOMEX-INE</title>
+    
+    <!-- Estilos locales desde la carpeta /css -->
+    <link rel="stylesheet" type="text/css" href="css/tutorial.css">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/portada.css">
+</head>
+
+<body>
+
+    <!-- ========== HEADER INYECTADO POR JS ========== -->
+    <header id="main-header"></header>
+
+    <!-- ========== PANEL DE ACCESIBILIDAD INYECTADO POR JS ========== -->
+    <div id="acc-wrapper"></div>
+
+    <!-- ========== BREADCRUMBS ========== -->
+    <div class="breadcrumb-container">
+        <nav class="breadcrumbs-nav" aria-label="Ruta de navegación">
+            <a href="portada.html" id="breadcrumbInicio">Inicio</a>
+            <span>/</span>
+            <b>Tutorial de versión pública</b>
+        </nav>
+    </div>
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <main class="container">
+        <h1 class="page-title">Tutorial de versión pública</h1>
+
+        <div class="title-divider"></div>
+
+        <div class="nav-buttons-container">
+            <a href="portada.html" id="backLink" class="nav-btn">
+                <i class="far fa-arrow-alt-circle-left"></i> Anterior
+            </a>
+        </div>
+
+        <div class="image-header">
+            <img src="images/imagenTutorial.png" alt="Encabezado Tutorial">
+        </div>
+
+        <div class="video-container">
+            <video controls>
+                <source src="assets/version-publica.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de videos.
+            </video>
+        </div>
+    </main>
+
+    <!-- ========== BOTÓN VOLVER ARRIBA ========== -->
+    <button id="backToTopBtn" class="back-to-top" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ========== FOOTER INYECTADO POR JS ========== -->
+    <footer id="site-footer"></footer>
+
+    <!-- ========== SCRIPT CENTRALIZADO ========== -->
+    <script src="componentes/layout.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userRol = urlParams.get('rol') || localStorage.getItem('rolSesion') || 'administracion';
+            localStorage.setItem('rolSesion', userRol);
+
+            // Dinamizar enlaces de retorno e inicio con el rol activo
+            const backLink = document.getElementById('backLink');
+            const breadcrumbInicio = document.getElementById('breadcrumbInicio');
+
+            if (backLink) backLink.href = `portada.html?rol=${userRol}`;
+            if (breadcrumbInicio) breadcrumbInicio.href = `portada.html?rol=${userRol}`;
+
+            // Lógica directa para el botón "Volver arriba"
+            const backToTopBtn = document.getElementById("backToTopBtn");
+            if (backToTopBtn) {
+                window.addEventListener("scroll", () => {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.style.display = "flex";
+                    } else {
+                        backToTopBtn.style.display = "none";
+                    }
+                });
+
+                backToTopBtn.addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,269 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primary-bg: #f2ede9;
+    --accent-beige: #c5a989;
+    --accent-hover: #b09372;
+    --text-dark: #333333;
+    --white: #ffffff;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.container {
+    flex: 1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 60px 40px;
+}
+
+/* --- BREADCRUMBS --- */
+.breadcrumb-container {
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 60px;
+    margin: 30px auto 10px;
+}
+
+.breadcrumbs-nav {
+    font-size: 15px;
+    color: #666;
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.breadcrumbs-nav a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.breadcrumbs-nav a:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbs-nav span {
+    margin: 0 8px;
+    color: #999;
+}
+
+.breadcrumbs-nav b {
+    color: #000000;
+}
+
+/* --- TÍTULO Y DIVISIONES --- */
+.page-title {
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #1a0a2e;
+}
+
+.title-divider {
+    height: 3px;
+    background-color: var(--accent-beige);
+    width: 100%;
+    margin-bottom: 25px;
+    border-radius: 2px;
+}
+
+/* --- BOTÓN REGRESAR --- */
+.nav-buttons-container {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.nav-btn {
+    text-decoration: none;
+    color: var(--accent-beige);
+    font-size: 1.1em;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-btn i {
+    font-size: 1.8em;
+}
+
+.nav-btn:hover {
+    color: var(--accent-hover);
+}
+
+/* --- ABECEDARIO --- */
+.alphabet-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 35px;
+    background: white;
+    padding: 12px;
+    border-radius: 8px;
+    /* Sombra difuminada y elegante */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
+    justify-content: center;
+}
+
+/* --- TARJETAS DE TÉRMINOS CON EFECTO ELEVADO --- */
+.term-item {
+    margin-bottom: 20px;
+    background: white;
+    padding: 18px 22px;
+    border-radius: 8px;
+    /* Sombra suave y amplia para dar efecto de profundidad */
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.letter-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.letter-link:hover {
+    background-color: var(--accent-beige);
+    color: white !important;
+}
+
+/* --- LISTA DE TÉRMINOS --- */
+.glossary-section {
+    margin-bottom: 35px;
+    scroll-margin-top: 100px;
+}
+
+
+.term-title {
+    color: var(--accent-beige);
+    font-size: 1.25em;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.term-definition {
+    color: #333;
+    font-size: 0.95em;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* ==========================================
+   BOTÓN VOLVER ARRIBA
+   ========================================== */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 65px;
+    height: 65px;
+    background-color: var(--accent-beige);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-to-top:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-3px);
+}
+
+/* --- MODO NOCTURNO --- */
+body.dark-mode {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode .breadcrumbs-nav a,
+body.dark-mode .breadcrumbs-nav b,
+body.dark-mode .breadcrumbs-nav span {
+    color: #ccc !important;
+}
+
+body.dark-mode .page-title {
+    color: #ffffff !important;
+}
+
+/* Barra del abecedario en fondo blanco con letras oscuras en modo nocturno */
+body.dark-mode .alphabet-nav {
+    background: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .letter-link {
+    color: #333333 !important;
+}
+
+body.dark-mode .letter-link:hover {
+    background-color: var(--accent-beige);
+    color: #ffffff !important;
+}
+
+/* Tarjetas de términos en fondo blanco con texto oscuro en modo nocturno */
+body.dark-mode .term-item {
+    background: #ffffff !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .term-title {
+    color: var(--accent-beige);
+}
+
+body.dark-mode .term-definition {
+    color: #333333 !important;
+}
+
+body.dark-mode .back-to-top {
+    background-color: var(--accent-beige);
+    box-shadow: 0 0 22px 6px rgba(197, 169, 137, 0.4);
+}
+
+body.dark-mode .back-to-top:hover {
+    background-color: var(--accent-hover);
+}
+
+/* --- RESPONSIVO --- */
+@media (max-width: 768px) {
+    .container,
+    .breadcrumb-container {
+        padding: 0 20px;
+    }
+
+    .term-item {
+        padding: 15px;
+    }
+}

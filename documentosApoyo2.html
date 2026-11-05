@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos de Apoyo - INFOMEX-INE</title>
+
+    <link rel="stylesheet" type="text/css" href="css/documentosApoyo2.css">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/portada.css">
+</head>
+
+<body>
+
+    <!-- ========== HEADER INYECTADO POR JS ========== -->
+    <header id="main-header"></header>
+
+    <!-- ========== PANEL DE ACCESIBILIDAD INYECTADO POR JS ========== -->
+    <div id="acc-wrapper"></div>
+
+    <div class="page-wrapper">
+        <main class="main-content">
+            <div class="breadcrumb-container">
+                <nav class="breadcrumbs-nav">
+                    <a href="portada.html" id="breadcrumbInicio">Inicio</a> <span>/</span>
+                    <a href="documentosApoyo.html" id="breadcrumbDocumentos">Documentos de Apoyo</a> <span>/</span>
+                    <b id="bread-actual">Cargando...</b>
+                </nav>
+            </div>
+
+            <div class="header-info">
+                <h2 class="doc-title" id="titulo-doc">Guía visual: Cargando...</h2>
+
+                <div class="download-area">
+                    <button class="download-link" id="btn-descargar-archivo" onclick="descargarArchivo()">
+                        Descargar archivo <i class="fas fa-file-download"></i>
+                    </button>
+                    <button class="download-link" id="btn-descargar-fichas" onclick="descargarFichasTecnicas()">
+                        Descargar Fichas Técnicas <i class="fas fa-book"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="nav-buttons-container">
+                <a href="documentosApoyo.html" class="nav-btn" id="btn-anterior">
+                    <i class="far fa-arrow-alt-circle-left"></i> Anterior
+                </a>
+                <a href="#" class="nav-btn" id="btn-siguiente">
+                    Siguiente <i class="far fa-arrow-alt-circle-right"></i>
+                </a>
+            </div>
+
+            <!-- Visor dinámico de PDF -->
+            <div class="pdf-container" id="contenedor-pdf">
+                <iframe id="pdf-viewer" src="" width="100%" height="800px" style="border: none;"></iframe>
+            </div>
+        </main>
+    </div>
+
+    <!-- ========== BOTÓN VOLVER ARRIBA ========== -->
+    <button id="backToTopBtn" class="back-to-top" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ========== FOOTER INYECTADO POR JS ========== -->
+    <footer id="site-footer"></footer>
+
+    <!-- ========== SCRIPT CENTRALIZADO Y LÓGICA DE INTERACTIVIDAD ========== -->
+    <script src="componentes/layout.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. OBTENER PARÁMETROS Y CONFIGURAR ROL
+            const params = new URLSearchParams(window.location.search);
+            let userRol = params.get('rol') || localStorage.getItem('rolSesion') || 'administracion';
+            localStorage.setItem('rolSesion', userRol);
+
+            // Dinamizar enlaces de inicio y documentos de apoyo con el rol activo
+            const breadcrumbInicio = document.getElementById('breadcrumbInicio');
+            const breadcrumbDocumentos = document.getElementById('breadcrumbDocumentos');
+            if (breadcrumbInicio) breadcrumbInicio.href = `portada.html?rol=${userRol}`;
+            if (breadcrumbDocumentos) breadcrumbDocumentos.href = `documentosApoyo.html?rol=${userRol}`;
+
+            // 2. DICCIONARIO Y CARGA DE PDF
+            const bibliotecaPDF = {
+                '1': { n: 'Información Pública', pdf: '1-UT-FT-AI-0001-2020-InformacionPublica1.pdf' },
+                '2': { n: 'Incompetencia', pdf: '2-UT-FT-AI-0002-2020-Incompetencia.pdf' },
+                '3': { n: 'Confidencialidad', pdf: '3-UT-FT-AI-0003-2020-ConfidencialidadV2.pdf' },
+                '4': { n: 'Confidencialidad - Anexo 1', pdf: '4-UT-FT-AI-0003-2020-A1.pdf' },
+                '5': { n: 'Confidencialidad - Anexo 2', pdf: '5-UT-FT-AI-0003-2020-A2.pdf' },
+                '6': { n: 'Reserva', pdf: '6-UT-FT-AI-0004-2020-ReservaV2.pdf' },
+                '7': { n: 'Reserva - Anexo único', pdf: '7-UT-FT-AI-0004-2020-AU.pdf' },
+                '8': { n: 'Declaración de inexistencia', pdf: '8-UT-FT-AI-0005-2020-InexistenciaV2.pdf' },
+                '9': { n: 'Sugerencia Turno', pdf: '9-UT-FT-AI-0006-2020-SugerenciaTurno.pdf' },
+                '10': { n: 'Sugerencia Turno - Anexo único', pdf: '10-UT-FT-AI-0006-2020-AU.pdf' },
+                '11': { n: 'Información Pública', pdf: '11-Informacion_Publica.pdf' },
+                '12': { n: 'Incompetencia', pdf: '12-Incompetencia.pdf' },
+                '13': { n: 'Inexistencia', pdf: '13-Inexistencia.pdf' },
+                '14': { n: 'Confidencialidad', pdf: '14-Confidencialidad.pdf' },
+                '15': { n: 'Reserva', pdf: '15-Reserva.pdf' },
+                '16': { n: 'Plazos internos', pdf: '1-Ficha_UT-FT-PDP-002-2020-PlazosInternos1.pdf' },
+                '17': { n: 'Esquema básico de respuestas', pdf: '2-Ficha_UT-FT-PDP-001-2020-EsquemaBasicoRespuesta1.pdf' }
+            };
+
+            const temaId = params.get('tema');
+            const pdfViewer = document.getElementById('pdf-viewer');
+            const title = document.getElementById('titulo-doc');
+            const bread = document.getElementById('bread-actual');
+            const btnAnterior = document.getElementById('btn-anterior');
+            const btnSiguiente = document.getElementById('btn-siguiente');
+
+            const temasKeys = Object.keys(bibliotecaPDF);
+            const indexActual = temasKeys.indexOf(temaId);
+
+            if (indexActual !== -1) {
+                const data = bibliotecaPDF[temaId];
+                bread.innerText = data.n;
+                title.innerText = data.n;
+                
+                pdfViewer.src = "documentosApoyo/" + data.pdf;
+
+                // Control de navegación Anterior / Siguiente
+                if (temaId === '1' || temaId === '11' || temaId === '16') {
+                    btnAnterior.href = `documentosApoyo.html?rol=${userRol}`;
+                } else if (indexActual === 0) {
+                    btnAnterior.href = `portada.html?rol=${userRol}`;
+                } else {
+                    const temaAnterior = temasKeys[indexActual - 1];
+                    btnAnterior.href = `?tema=${temaAnterior}&rol=${userRol}`;
+                }
+
+                if (indexActual < temasKeys.length - 1) {
+                    const temaSiguiente = temasKeys[indexActual + 1];
+                    btnSiguiente.href = `?tema=${temaSiguiente}&rol=${userRol}`;
+                } else {
+                    btnSiguiente.style.display = 'none';
+                }
+            } else {
+                title.innerText = "Error";
+                bread.innerText = "No encontrado";
+                document.getElementById('contenedor-pdf').innerHTML = "<p style='padding: 20px; text-align: center;'>No se encontró el archivo solicitado.</p>";
+                btnSiguiente.style.display = 'none';
+                btnAnterior.href = `documentosApoyo.html?rol=${userRol}`;
+            }
+
+            // Descarga de archivos
+            window.descargarArchivo = function() {
+                if (bibliotecaPDF[temaId]) {
+                    const fileUrl = 'documentosApoyo/' + bibliotecaPDF[temaId].pdf;
+                    const a = document.createElement('a');
+                    a.href = fileUrl;
+                    a.download = bibliotecaPDF[temaId].pdf;
+                    a.target = '_blank';
+                    a.click();
+                } else {
+                    alert('No hay archivo disponible para descargar.');
+                }
+            };
+
+            // Lógica del botón "Volver arriba"
+            const backToTopBtn = document.getElementById("backToTopBtn");
+            if (backToTopBtn) {
+                window.addEventListener("scroll", () => {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.style.display = "flex";
+                    } else {
+                        backToTopBtn.style.display = "none";
+                    }
+                });
+
+                backToTopBtn.addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

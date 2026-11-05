@@ -1,0 +1,146 @@
+/* --- Reset de Estilos Básicos --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-image: url('fondo.png'); 
+    
+    /* Configuración para que el fondo se vea perfecto */
+    background-size: cover;          /* Hace que la imagen cubra toda la pantalla */
+    background-position: center;     /* Centra la imagen de fondo */
+    background-repeat: no-repeat;    /* Evita que la imagen se duplique como mosaico */
+    background-attachment: fixed;    /* Mantiene el fondo fijo si hay scroll */
+    
+    color: #2f3640;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* --- Contenedor de la Ventana --- */
+.contenedor-interfaz {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye arriba, centro y abajo */
+    padding: 40px;
+    position: relative;
+}
+
+/* --- Título --- */
+.header-titulo {
+    text-align: center;
+    width: 100%;
+}
+
+.header-titulo h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1e272e;
+}
+
+/* --- Contenedor de Botones (Grid de 3x2) --- */
+.seccion-botones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 25px;                             /* Espacio entre botones */
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;                        /* Centra la cuadrícula */
+}
+
+/* --- Estilo de los Botones --- */
+.btn-rol {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 20px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Efectos visuales para los botones */
+.btn-rol:hover {
+    background-color: #357abd;
+    transform: translateY(-2px); /* Pequeño brinco al pasar el mouse */
+}
+
+.btn-rol:active {
+    transform: translateY(1px);
+}
+
+/* --- Esquina Inferior Izquierda (Footer) --- */
+.footer-logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+/* Estilo para tu imagen real */
+.logo-empresa {
+    max-height: 60px; /* Controla la altura máxima para que no deforme la app */
+    max-width: 180px;
+    object-fit: contain;
+}
+
+/* Estilo para el cuadro gris de repuesto (desaparecerá cuando pongas tu logo) */
+.logo-placeholder {
+    background-color: #dcdde1;
+    color: #7f8c8d;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-style: italic;
+    border: 2px dashed #b2bec3;
+}
+
+/* --- Adaptación para pantallas pequeñas (Celulares) --- */
+@media (max-width: 768px) {
+    .seccion-botones {
+        grid-template-columns: repeat(2, 1fr); /* Se vuelve de 2 columnas en móvil */
+    }
+}
+
+
+/* --- Colores Personalizados para cada Botón --- */
+
+/* Rol 1 - Morado */
+.btn-rol-1 { background-color: #8e44ad; }
+.btn-rol-1:hover { background-color: #732691; }
+
+/* Rol 2 - Turquesa / Azul verdoso */
+.btn-rol-2 { background-color: #409aa1; }
+.btn-rol-2:hover { background-color: #2e787e; }
+
+/* Rol 3 - Rosa Fuerte / Magenta */
+.btn-rol-3 { background-color: #d5007f; }
+.btn-rol-3:hover { background-color: #aa0065; }
+
+/* Rol 4 - Rosa Viejo / Pastel */
+.btn-rol-4 { background-color: #c791a8; }
+.btn-rol-4:hover { background-color: #b07890; }
+
+/* Rol 5 - Gris Oscuro */
+.btn-rol-5 { background-color: #575453; }
+.btn-rol-5:hover { background-color: #3e3b3b; }
+
+/* Rol 6 - Azul Corporativo */
+.btn-rol-6 { background-color: #0063b8; }
+.btn-rol-6:hover { background-color: #004c8c; }
+
+
+.btn-rol {
+    display: inline-block;    /* Permite que se comporte como un botón espaciado */
+    text-align: center;       /* Centra el texto por si acaso */
+    text-decoration: none;    
+}

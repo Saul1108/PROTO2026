@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipos del Centro de Ayuda</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+    <div class="contenedor-interfaz">
+        
+        <header class="header-titulo">
+            <h1>Prototipos del centro de ayuda</h1>
+        </header>
+
+        <main class="seccion-botones">
+            <!-- Pasamos el rol como un parametro en la URL (?rol=...) -->
+            <a href="portada.html?rol=administracion" class="btn-rol btn-rol-1">Administrador</a>
+            
+            <a href="portada.html?rol=ut" class="btn-rol btn-rol-2">UT-Gestión</a>
+            
+            <a href="portada.html?rol=areas" class="btn-rol btn-rol-3">Áreas Responsables</a>
+            
+            <a href="portada.html?rol=comite" class="btn-rol btn-rol-4">Comité de Transparencia</a>
+            
+            <a href="portada.html?rol=revisor" class="btn-rol btn-rol-5">INE-Revisor</a>
+            
+            <a href="portada.html?rol=consulta" class="btn-rol btn-rol-6">INE-Consulta</a>
+        </main>
+
+        <footer class="footer-logo">
+            <img src="images/ineFooter.png" alt="Logotipo Empresa" class="logo-empresa" onerror="this.style.display='none'; document.getElementById('placeholder-logo').style.display='block';">
+            
+            <div id="placeholder-logo" class="logo-placeholder" style="display: none;">
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

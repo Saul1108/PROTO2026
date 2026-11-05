@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos de Apoyo - INFOMEX-INE</title>
+
+    <link rel="stylesheet" type="text/css" href="css/documentosApoyo.css">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/portada.css">
+</head>
+
+<body>
+
+    <!-- ========== HEADER INYECTADO POR JS ========== -->
+    <header id="main-header"></header>
+
+    <!-- ========== PANEL DE ACCESIBILIDAD INYECTADO POR JS ========== -->
+    <div id="acc-wrapper"></div>
+
+    <!-- ENVOLTORIO GENERAL PARA FIJAR EL FOOTER ABAJO -->
+    <div class="page-wrapper">
+
+    <!-- Migas de pan -->
+    <div class="breadcrumb-container">
+        <nav class="breadcrumbs-nav">
+            <a href="portada.html" id="breadcrumbInicio">Inicio</a> <span>/</span> <b>Documentos de Apoyo</b>
+        </nav>
+    </div>
+
+    <main class="container">
+        <h1 class="page-title">Documentos de Apoyo</h1>
+        <div class="title-divider"></div>
+    </main>
+
+    <!-- Botón “Anterior” alineado -->
+    <div class="nav-buttons-container">
+        <a href="portada.html" id="backLink" class="nav-btn">
+            <i class="far fa-arrow-alt-circle-left"></i> Anterior
+        </a>
+    </div>
+
+    <div class="info-text-container" style="max-width: 1100px; margin: 0 auto; padding: 20px 60px 20px 60px; text-align: left;">
+        <p style="font-size: 1.1rem; color: #444; line-height: 1.5;">
+            Aquí encontrarás materiales y recursos complementarios que te ayudarán a comprender mejor los procesos,
+            consultar información relevante y facilitar tus actividades dentro del sistema.
+        </p>
+    </div>
+
+    <!-- Contenido principal / Grid de documentos -->
+    <div class="container">
+        <div class="content-grid">
+            <div class="column">
+                <div class="menu-item">
+                    <div class="main-button">Atención de solicitudes de acceso a la información</div>
+                    <div class="dropdown-level-1">
+                        <button class="submenu-trigger">Fichas Técnicas</button>
+                        <div class="dropdown-level-2">
+                            <a href="documentosApoyo2.html?tema=1">Información Pública</a>
+                            <a href="documentosApoyo2.html?tema=2">Incompetencia</a>
+                            <a href="documentosApoyo2.html?tema=3">Confidencialidad</a>
+                            <a href="documentosApoyo2.html?tema=4">Confidencialidad - Anexo 1</a>
+                            <a href="documentosApoyo2.html?tema=5">Confidencialidad - Anexo 2</a>
+                            <a href="documentosApoyo2.html?tema=6">Reserva</a>
+                            <a href="documentosApoyo2.html?tema=7">Reserva - Anexo único</a>
+                            <a href="documentosApoyo2.html?tema=8">Declaración de inexistencia</a>
+                            <a href="documentosApoyo2.html?tema=9">Sugerencia Turno</a>
+                            <a href="documentosApoyo2.html?tema=10">Sugerencia Turno - Anexo único</a>
+                        </div>
+
+                        <button class="submenu-trigger">Formatos Tipo</button>
+                        <div class="dropdown-level-2">
+                            <a href="documentosApoyo2.html?tema=11">Información Pública</a>
+                            <a href="documentosApoyo2.html?tema=12">Incompetencia</a>
+                            <a href="documentosApoyo2.html?tema=13">Inexistencia</a>
+                            <a href="documentosApoyo2.html?tema=14">Confidencialidad</a>
+                            <a href="documentosApoyo2.html?tema=15">Reserva</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="menu-item">
+                    <div class="main-button">Atención de solicitudes para el ejercicio de derechos ARCOP</div>
+                    <div class="dropdown-level-1">
+                        <button class="submenu-trigger">Fichas Técnicas</button>
+                        <div class="dropdown-level-2">
+                            <a href="documentosApoyo2.html?tema=16">Plazos internos</a>
+                            <a href="documentosApoyo2.html?tema=17">Esquema básico de respuestas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /Fin de page-wrapper -->
+
+    <!-- ========== BOTÓN VOLVER ARRIBA ========== -->
+    <button id="backToTopBtn" class="back-to-top" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ========== FOOTER INYECTADO POR JS ========== -->
+    <footer id="site-footer"></footer>
+
+    <!-- ========== SCRIPT CENTRALIZADO Y LÓGICA DE INTERACTIVIDAD ========== -->
+    <script src="componentes/layout.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userRol = urlParams.get('rol') || localStorage.getItem('rolSesion') || 'administracion';
+            localStorage.setItem('rolSesion', userRol);
+
+            // Dinamizar enlaces de retorno, inicio y parámetros de rol en submenús
+            const backLink = document.getElementById('backLink');
+            const breadcrumbInicio = document.getElementById('breadcrumbInicio');
+
+            if (backLink) backLink.href = `portada.html?rol=${userRol}`;
+            if (breadcrumbInicio) breadcrumbInicio.href = `portada.html?rol=${userRol}`;
+
+            document.querySelectorAll('.dropdown-level-2 a').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && !href.startsWith('#')) {
+                    const cleanHref = href.split('?')[0];
+                    const searchParams = new URLSearchParams(href.includes('?') ? href.split('?')[1] : '');
+                    searchParams.set('rol', userRol);
+                    link.href = `${cleanHref}?${searchParams.toString()}`;
+                }
+            });
+
+            // Lógica del menú desplegable de dos niveles
+            document.querySelectorAll('.menu-item').forEach(function (item) {
+                var mainBtn = item.querySelector('.main-button');
+                if (!mainBtn) return;
+
+                mainBtn.setAttribute('tabindex', '0');
+                mainBtn.setAttribute('role', 'button');
+                mainBtn.style.cursor = 'pointer';
+
+                function toggleLevel1(e) {
+                    e.stopPropagation();
+                    var isOpen = item.classList.contains('is-open');
+
+                    document.querySelectorAll('.menu-item.is-open').forEach(function (other) {
+                        if (other !== item) {
+                            other.classList.remove('is-open');
+                            other.querySelectorAll('.dropdown-level-2.active').forEach(function (d2) {
+                                d2.classList.remove('active');
+                            });
+                            other.querySelectorAll('.submenu-trigger.active').forEach(function (t) {
+                                t.classList.remove('active');
+                            });
+                        }
+                    });
+
+                    if (isOpen) {
+                        item.classList.remove('is-open');
+                    } else {
+                        item.classList.add('is-open');
+                    }
+                }
+
+                mainBtn.addEventListener('click', toggleLevel1);
+                mainBtn.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleLevel1(e);
+                    }
+                    if (e.key === 'Escape') {
+                        item.classList.remove('is-open');
+                        mainBtn.focus();
+                    }
+                });
+            });
+
+            document.querySelectorAll('.submenu-trigger').forEach(function (button) {
+                button.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    var targetMenu = button.nextElementSibling;
+                    if (targetMenu) {
+                        button.classList.toggle('active');
+                        targetMenu.classList.toggle('active');
+                    }
+                });
+
+                button.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        var targetMenu = button.nextElementSibling;
+                        button.classList.remove('active');
+                        if (targetMenu) targetMenu.classList.remove('active');
+                        button.focus();
+                    }
+                });
+            });
+
+            document.addEventListener('click', function () {
+                document.querySelectorAll('.menu-item.is-open').forEach(function (item) {
+                    item.classList.remove('is-open');
+                });
+            });
+
+            // Lógica del botón "Volver arriba"
+            const backToTopBtn = document.getElementById("backToTopBtn");
+            if (backToTopBtn) {
+                window.addEventListener("scroll", () => {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.style.display = "flex";
+                    } else {
+                        backToTopBtn.style.display = "none";
+                    }
+                });
+
+                backToTopBtn.addEventListener("click", () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

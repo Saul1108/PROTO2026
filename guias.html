@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guías de usuario - INFOMEX</title>
+
+    <link rel="stylesheet" type="text/css" href="css/guiaUsuario.css">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/portada.css">
+</head>
+
+<body>
+
+    <!-- ========== HEADER INYECTADO POR JS ========== -->
+    <header id="main-header"></header>
+
+    <!-- ========== PANEL DE ACCESIBILIDAD INYECTADO POR JS ========== -->
+    <div id="acc-wrapper"></div>
+
+    <div id="module-wrapper" style="flex: 1; display: flex; flex-direction: column;">
+        <!-- BREADCRUMBS -->
+        <div class="breadcrumb-container">
+            <nav class="breadcrumbs-nav">
+                <a href="portada.html" id="bread-inicio">Inicio</a>
+                <span>/</span>
+                <b>Guías de usuario</b>
+            </nav>
+        </div>
+
+        <div class="nav-buttons-container">
+            <a href="portada.html" id="backLink" class="nav-btn">
+                <i class="far fa-arrow-alt-circle-left"></i> Anterior
+            </a>
+        </div>
+
+        <div class="info-text-container">
+            <p>
+                Aquí encontrarás instrucciones paso a paso para realizar procesos dentro del sistema de forma sencilla y eficiente.
+            </p>
+        </div>
+
+        <!-- BARRA DE ADMINISTRADOR (Navegación de 6 roles con el color unificado beige) -->
+        <div class="options-nav" id="adminNavTabs" style="display: none;">
+            <button class="option-btn" data-tab-role="administracion" onclick="cambiarRolVista('administracion')">Administrador</button>
+            <button class="option-btn" data-tab-role="ut" onclick="cambiarRolVista('ut')">UT-Gestión</button>
+            <button class="option-btn" data-tab-role="areas" onclick="cambiarRolVista('areas')">Áreas responsables</button>
+            <button class="option-btn" data-tab-role="comite" onclick="cambiarRolVista('comite')">Comité de Transparencia</button>
+            <button class="option-btn" data-tab-role="revisor" onclick="cambiarRolVista('revisor')">INE-Revisor</button>
+            <button class="option-btn" data-tab-role="consulta" onclick="cambiarRolVista('consulta')">INE-Consulta</button>
+        </div>
+
+        <!-- BARRA SECUNDARIA (Solo para otros roles: Pestaña del Rol + Buscador PDF) -->
+        <div class="options-nav" id="subRoleNav" style="display: none;">
+            <button class="option-btn active" id="btnMainRole" onclick="toggleSubVista('guias')">Guías del Rol</button>
+            <button class="option-btn" id="btnPdfBuscador" onclick="toggleSubVista('pdf')">Buscador de Datos Personales e Información Reservada</button>
+        </div>
+
+        <main class="container">
+
+            <!-- SECCIÓN 1: RETÍCULA DE GUÍAS -->
+            <div id="section-guias-grid">
+                
+                <!-- BLOQUE ADMINISTRADOR -->
+                <div class="tab-content" id="tab-administracion">
+                    <h2 class="rol-title">Administrador</h2>
+                    <div class="content-grid">
+                        <!-- Columna 1 -->
+                        <div class="column">
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=115" class="main-button">Ingreso al sistema</a>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Administración de cuentas</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=116">Registra a un usuario</a>
+                                    <a href="documentos.html?tema=117">Registra a un usuario de Partido Político</a>
+                                    <a href="documentos.html?tema=118">Busca usuarios registrados</a>
+                                    <a href="documentos.html?tema=119">Por Usuario</a>
+                                    <a href="documentos.html?tema=120">Por Rol</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Reportes</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=121">Movimientos en Administración</a>
+                                    <a href="documentos.html?tema=122">Bitácora de acceso al sistema</a>
+                                    <a href="documentos.html?tema=123">Bitácora de acciones por usuario</a>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=124" class="main-button">Cambio de rol</a>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Registrar solicitantes y solicitudes</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=125">Solicitudes manuales</a>
+                                    <a href="documentos.html?tema=126">Tipo de solicitud</a>
+                                    <a href="documentos.html?tema=127">Registro de solicitud</a>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=128" class="main-button">Carga solicitudes de la PNT</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=129" class="main-button">Estatus de solicitudes</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=130" class="main-button">Solicitudes recibidas</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=131" class="main-button">Asignar responsables</a>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Retirar turno a áreas responsables</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=132">Solicitudes ARCOP</a>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=133" class="main-button">Devolución de turno</a>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Responder</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=134">Notoria incompetencia</a>
+                                    <a href="documentos.html?tema=135">Duplicada</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Solicitar Requerimiento a áreas Responsables</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=136">Solicitar Requerimiento a áreas Responsables</a>
+                                    <a href="documentos.html?tema=137">Requerimiento de Aclaración (RA)</a>
+                                    <a href="documentos.html?tema=138">Requerimiento Intermedio (RII)</a>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=139" class="main-button">Solicitar Requerimiento a un recurso de revisión</a>
+                            </div>
+                        </div>
+
+                        <!-- Columna 2 -->
+                        <div class="column">
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Solicitar Prevención a Áreas</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=140">Solicitudes ARCOP</a>
+                                    <a href="documentos.html?tema=141">Requerimiento de Aclaración (RA)</a>
+                                    <a href="documentos.html?tema=142">Requerimiento Intermedio (RII)</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Solicitar Requerimiento al solicitante</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=143">Solicitudes de acceso a la información (SAI)</a>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=144" class="main-button">Responder Requerimiento a nombre del solicitante</a>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Solicitar Vía Procedimental al solicitante</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=145">Solicitudes ARCOP</a>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=146" class="main-button">Responder Vía Procedimental a nombre del solicitante</a>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Solicitar Prevención al solicitante</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=147">Solicitudes ARCOP</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Responder solicitudes</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=148">SAI y ARCOP</a>
+                                    <a href="documentos.html?tema=149">Video</a>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=150" class="main-button">Datos del Previo Pago</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=151" class="main-button">Previo Pago-Asignar responsables</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=152" class="main-button">Recurso de revisión</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=153" class="main-button">Asignar responsables recurso revisión</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=154" class="main-button">Notificar a Autoridad Garante</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=155" class="main-button">Sentido de resolución</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=156" class="main-button">Orden de cumplimiento</a>
+                            </div>
+                        </div>
+
+                        <!-- Columna 3 -->
+                        <div class="column">
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Requerimiento desahogado</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=157">Asignar folio PNT</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Responder Requerimiento</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=158">Desahogado - Notoria incompetencia</a>
+                                    <a href="documentos.html?tema=159">Solicitudes ARCOP y SAI</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Responder Requerimiento Desahogado</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=160">Duplicada</a>
+                                    <a href="documentos.html?tema=161">Solicitudes ARCOP y SAI</a>
+                                    <a href="documentos.html?tema=162">Responder (Concluir) Solicitudes SAI</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Expediente virtual</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=163">Búsqueda de Expedientes</a>
+                                    <a href="documentos.html?tema=164">Editar folio de la PNT</a>
+                                    <a href="documentos.html?tema=165">Ingresar número de expediente</a>
+                                    <a href="documentos.html?tema=166">Regenerar Expedientes</a>
+                                    <a href="documentos.html?tema=167">Detalle del expediente virtual</a>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=168" class="main-button">Actualizar fecha de respuesta de las áreas y la fecha de respuesta de la solicitud</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=169" class="main-button">Actualizar fecha de vencimiento</a>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Administración de solicitudes y respuestas</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=170">Solicitudes</a>
+                                    <a href="documentos.html?tema=171">Respuestas solicitudes</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Reportes</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=172">Búsqueda General</a>
+                                    <a href="documentos.html?tema=173">Búsqueda Otros</a>
+                                    <a href="documentos.html?tema=174">Indicadores</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Directorio de Enlaces de Transparencia de Protección de datos personales</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=175">Descarga</a>
+                                    <a href="documentos.html?tema=176">Carga</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Motor de folios asignados por áreas</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=177">Buscador Solicitudes SAI</a>
+                                    <a href="documentos.html?tema=178">Buscador Solicitudes ARCOP</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Informes</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=179">Informes fijos</a>
+                                </div>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=180" class="main-button">Centro de Ayuda</a>
+                            </div>
+                            <div class="menu-item">
+                                <a href="documentos.html?tema=181" class="main-button">Notificaciones que recibe el usuario de parte del sistema</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOQUE UT-GESTIÓN -->
+                <div class="tab-content" id="tab-ut">
+                    <h2 class="rol-title">UT-Gestión</h2>
+                    <div class="content-grid">
+                        <div class="column">
+                            <div class="menu-item"><a href="documentos.html?tema=1" class="main-button">Ingreso al sistema</a></div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Registrar solicitantes y solicitudes</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=2">Solicitudes manuales</a>
+                                    <a href="documentos.html?tema=3">Tipo de solicitud</a>
+                                    <a href="documentos.html?tema=4">Registro de solicitud</a>
+                                </div>
+                            </div>
+                            <div class="menu-item"><a href="documentos.html?tema=5" class="main-button">Carga solicitudes de la Plataforma Nacional de Transparencia</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=6" class="main-button">Estatus de solicitudes</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=7" class="main-button">Solicitudes recibidas</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=8" class="main-button">Asignar responsable</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=9" class="main-button">Retirar el turno a las áreas responsables</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=10" class="main-button">Devolución de turno</a></div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Responder</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=11">Notoria incompetencia</a>
+                                    <a href="documentos.html?tema=12">Duplicada</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Solicitar Requerimiento a áreas responsables</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=13">Requerimiento de Aclaración (RA)</a>
+                                    <a href="documentos.html?tema=14">Requerimiento Intermedio de Información (RII)</a>
+                                </div>
+                            </div>
+                            <div class="menu-item"><a href="documentos.html?tema=15" class="main-button">Solicitar requerimiento a un recurso de revisión</a></div>
+                        </div>
+
+                        <div class="column">
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Solicitar Prevención a Áreas Responsables</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=16">Requerimiento de Aclaración (RA)</a>
+                                    <a href="documentos.html?tema=17">Requerimiento Intermedio de Información (RII)</a>
+                                </div>
+                            </div>
+                            <div class="menu-item"><a href="documentos.html?tema=18" class="main-button">Solicitar Requerimiento al solicitante</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=19" class="main-button">Responder Requerimiento a nombre del solicitante</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=20" class="main-button">Solicitar Vía Procedimental al solicitante</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=21" class="main-button">Responder Vía Procedimental a nombre del solicitante</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=22" class="main-button">Solicitar Prevención al solicitante</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=23" class="main-button">Responder Solicitudes</a></div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Datos del Previo Pago</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=24">Previo Pago-Asignar responsables</a>
+                                    <a href="documentos.html?tema=25">Asignación Previo Pago</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Recurso de revisión</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=26">Asignar responsable al recurso de revisión</a>
+                                </div>
+                            </div>
+                            <div class="menu-item"><a href="documentos.html?tema=27" class="main-button">Notificar a Autoridad Garante</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=28" class="main-button">Sentido de resolución</a></div>
+                        </div>
+
+                        <div class="column">
+                            <div class="menu-item"><a href="documentos.html?tema=29" class="main-button">Orden de cumplimiento</a></div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Requerimiento desahogado</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=30">Asignar folio PNT</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Responder Requerimiento desahogado</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=31">Notoria incompetencia</a>
+                                    <a href="documentos.html?tema=32">Duplicada</a>
+                                    <a href="documentos.html?tema=33">Responder (Concluir)</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Expediente virtual</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=34">Búsqueda de Expedientes</a>
+                                    <a href="documentos.html?tema=35">Editar folio de la PNT</a>
+                                    <a href="documentos.html?tema=36">Ingresar número de expediente</a>
+                                    <a href="documentos.html?tema=37">Regenerar Expedientes</a>
+                                    <a href="documentos.html?tema=38">Detalle del expediente virtual</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Reportes</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=39">Búsqueda General</a>
+                                    <a href="documentos.html?tema=40">Búsqueda Otros</a>
+                                    <a href="documentos.html?tema=41">Indicadores</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Directorio de Enlaces de Transparencia y Protección de datos Personales</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=42">Descarga</a>
+                                    <a href="documentos.html?tema=43">Carga</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Motor de folios asignados por áreas</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=44">Buscador de Solicitudes SAI</a>
+                                    <a href="documentos.html?tema=45">Buscador de Solicitudes ARCOP</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Informes</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=46">Informes fijos</a>
+                                </div>
+                            </div>
+                            <div class="menu-item"><a href="documentos.html?tema=47" class="main-button">Centro de Ayuda</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=48" class="main-button">Notificaciones que recibe el usuario de parte del sistema</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOQUE ÁREAS RESPONSABLES -->
+                <div class="tab-content" id="tab-areas">
+                    <h2 class="rol-title">Áreas responsables</h2>
+                    <div class="content-grid">
+                        <div class="column">
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Atender una solicitud</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=49">Atender</a>
+                                    <a href="documentos.html?tema=tutorial_atender_solicitud">Video</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Responder</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=50">Pública</a>
+                                    <a href="documentos.html?tema=51">Notoria incompetencia</a>
+                                    <a href="documentos.html?tema=52">Con clasificación</a>
+                                </div>
+                            </div>
+                            <div class="menu-item"><a href="documentos.html?tema=53" class="main-button">Solicitar Requerimiento en SAI</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=54" class="main-button">Vía Procedimental solicitudes ARCOP</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=55" class="main-button">Responder Requerimiento de Aclaración (RA), ARCOP y SAI</a></div>
+                        </div>
+
+                        <div class="column">
+                            <div class="menu-item"><a href="documentos.html?tema=56" class="main-button">Responder Requerimiento de Información Adicional (RIA)</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=57" class="main-button">Sugerencia de turno en ARCOP y SAI</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=58" class="main-button">Responder Asignación Previo Pago</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=59" class="main-button">Respuesta al Recurso de Revisión</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=60" class="main-button">Responder orden de cumplimiento</a></div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Directorio de Enlaces de Transparencia y PDP Descargar Directorio de Enlaces</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=61">Observaciones del Directorio de Enlaces</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Informe de Recursos Humanos y Materiales</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=62">Capturar</a>
+                                    <a href="documentos.html?tema=63">Capturar Anual</a>
+                                    <a href="documentos.html?tema=64">Editar</a>
+                                    <a href="documentos.html?tema=65">Consultar</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Motor de folios asignados por áreas</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=66">Buscador de Solicitudes SAI</a>
+                                    <a href="documentos.html?tema=67">Buscador de Solicitudes ARCOP</a>
+                                </div>
+                            </div>
+                            <div class="menu-item"><a href="documentos.html?tema=68" class="main-button">Estatus de las solicitudes</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=69" class="main-button">Centro de Ayuda</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=70" class="main-button">Notificaciones que recibe el usuario de parte del sistema</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOQUE COMITÉ DE TRANSPARENCIA -->
+                <div class="tab-content" id="tab-comite">
+                    <h2 class="rol-title">Comité de Transparencia</h2>
+                    <div class="content-grid">
+                        <div class="column">
+                            <div class="menu-item"><a href="documentos.html?tema=71" class="main-button">Ingreso al sistema</a></div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Registro de sesiones y resoluciones del comité</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=72">Responder solicitudes que requieren pronunciamiento del Comité de Transparencia</a>
+                                    <a href="documentos.html?tema=73">Responder solicitud de ampliación de plazo</a>
+                                    <a href="documentos.html?tema=74">Respuestas</a>
+                                    <a href="documentos.html?tema=75">Consultar Sesiones de Comité</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Buscador de Datos Personales e Información Reservada</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=76">Consulta de información</a>
+                                    <a href="documentos.html?tema=77">Datos personales</a>
+                                    <a href="documentos.html?tema=78">Buscar Información de Datos Personales</a>
+                                    <a href="documentos.html?tema=79">Buscar Catálogo de Datos Personales (CADA)</a>
+                                    <a href="documentos.html?tema=80">Información Reservada</a>
+                                    <a href="documentos.html?tema=81">Vigente</a>
+                                    <a href="documentos.html?tema=82">Histórica</a>
+                                    <a href="documentos.html?tema=83">Documentos testados</a>
+                                    <a href="documentos.html?tema=84">Administración de Información</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="column">
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Expediente virtual</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=85">Búsqueda de Expedientes</a>
+                                    <a href="documentos.html?tema=86">Editar folio de la PNT</a>
+                                    <a href="documentos.html?tema=87">Ingresar número de expediente</a>
+                                    <a href="documentos.html?tema=88">Asignar o editar usuario</a>
+                                    <a href="documentos.html?tema=89">Regenerar Expedientes</a>
+                                    <a href="documentos.html?tema=90">Detalle del expediente virtual</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Repositorio del CT</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=91">Buscar</a>
+                                    <a href="documentos.html?tema=92">Datos del expediente virtual</a>
+                                    <a href="documentos.html?tema=93">Módulo Descargar</a>
+                                </div>
+                            </div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Motor de folios asignados por áreas</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=94">Buscador de Solicitudes SAI</a>
+                                    <a href="documentos.html?tema=95">Buscador de Solicitudes ARCOP</a>
+                                </div>
+                            </div>
+                            <div class="menu-item"><a href="documentos.html?tema=96" class="main-button">Estatus de solicitudes</a></div>
+                        </div>
+
+                        <div class="column">
+                            <div class="menu-item"><a href="documentos.html?tema=97" class="main-button">Dar de baja una solicitud</a></div>
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Solicitar Requerimiento/Prevención</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=98">Solicitudes de Acceso a la Información</a>
+                                    <a href="documentos.html?tema=99">Solicitudes ARCOP</a>
+                                    <a href="documentos.html?tema=100">Requerimiento de Aclaración (RA)</a>
+                                    <a href="documentos.html?tema=101">Requerimiento Intermedio de Información (RII)</a>
+                                    <a href="documentos.html?tema=102">Devolución de turno</a>
+                                </div>
+                            </div>
+                            <div class="menu-item"><a href="documentos.html?tema=103" class="main-button">Centro de Ayuda</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=104" class="main-button">Notificaciones que recibe el usuario de parte del sistema</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOQUE INE REVISOR -->
+                <div class="tab-content" id="tab-revisor">
+                    <h2 class="rol-title">INE-Revisor</h2>
+                    <div class="content-grid">
+                        <div class="column">
+                            <div class="menu-item"><a href="documentos.html?tema=105" class="main-button">Ingreso al sistema</a></div>
+                            <div class="menu-item"><a href="documentos.html?tema=106" class="main-button">Atender una solicitud</a></div>
+                        </div>
+                        <div class="column">
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Sentido de resolución</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=107">Confirma y Sobresee</a>
+                                    <a href="documentos.html?tema=108">Modifica, Revoca y Ordena</a>
+                                </div>
+                            </div>
+                            <div class="menu-item"><a href="documentos.html?tema=109" class="main-button">Orden de cumplimiento</a></div>
+                        </div>
+                        <div class="column">
+                            <div class="menu-item"><a href="documentos.html?tema=110" class="main-button">Notificar orden de cumplimiento</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOQUE INE CONSULTA -->
+                <div class="tab-content" id="tab-consulta">
+                    <h2 class="rol-title">INE-Consulta</h2>
+                    <div class="content-grid">
+                        <div class="column">
+                            <div class="menu-item"><a href="documentos.html?tema=111" class="main-button">Ingreso al sistema</a></div>
+                        </div>
+                        <div class="column">
+                            <div class="menu-item has-dropdown">
+                                <button type="button" class="main-button submenu-trigger">Motor de folios asignados por áreas</button>
+                                <div class="dropdown-content">
+                                    <a href="documentos.html?tema=112">Buscador de Solicitudes SAI</a>
+                                    <a href="documentos.html?tema=113">Buscador de Solicitudes ARCOP</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="menu-item"><a href="documentos.html?tema=114" class="main-button">Solicitudes</a></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- SECCIÓN 2: VISOR PDF DE BUSCADOR -->
+            <div id="section-pdf-viewer" style="display: none;">
+                <h2 class="rol-title">Buscador de Datos Personales e Información Reservada</h2>
+                <div class="pdf-container">
+                    <iframe src="assets/4-Buscador_de_Datos_Personales_e_Informacion_Reservada.pdf" title="Visor PDF"></iframe>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- ========== BOTÓN VOLVER ARRIBA ========== -->
+    <button id="backToTopBtn" class="back-to-top" aria-label="Volver arriba"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- ========== FOOTER INYECTADO POR JS ========== -->
+    <footer id="site-footer"></footer>
+
+    <!-- ========== SCRIPT CENTRALIZADO Y LÓGICA DE ROLES ========== -->
+    <script src="componentes/layout.js"></script>
+    <script>
+        window.cambiarRolVista = null;
+        window.toggleSubVista = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userRol = urlParams.get('rol') || localStorage.getItem('rolSesion') || 'administracion';
+            localStorage.setItem('rolSesion', userRol);
+
+            const nombresRoles = {
+                'administracion': 'Administrador',
+                'ut': 'UT-Gestión',
+                'areas': 'Áreas responsables',
+                'comite': 'Comité de Transparencia',
+                'revisor': 'INE-Revisor',
+                'consulta': 'INE-Consulta'
+            };
+
+            const adminNavTabs = document.getElementById('adminNavTabs');
+            const subRoleNav = document.getElementById('subRoleNav');
+            const btnMainRole = document.getElementById('btnMainRole');
+            const btnPdfBuscador = document.getElementById('btnPdfBuscador');
+            const backLink = document.getElementById('backLink');
+            const breadInicio = document.getElementById('bread-inicio');
+
+            if (backLink) backLink.href = `portada.html?rol=${userRol}`;
+            if (breadInicio) breadInicio.href = `portada.html?rol=${userRol}`;
+
+            // Cambiar de rol en pantalla con color unificado
+            window.cambiarRolVista = function(rolActivo) {
+                localStorage.setItem('vistaActiva', rolActivo);
+
+                document.querySelectorAll('.tab-content').forEach(block => {
+                    block.style.display = 'none';
+                });
+
+                const targetTab = document.getElementById(`tab-${rolActivo}`);
+                if (targetTab) {
+                    targetTab.style.display = 'block';
+                    
+                    targetTab.querySelectorAll('a').forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href && !href.startsWith('#')) {
+                            const cleanHref = href.split('?')[0];
+                            const searchParams = new URLSearchParams(href.includes('?') ? href.split('?')[1] : '');
+                            searchParams.set('rol', userRol);
+                            link.href = `${cleanHref}?${searchParams.toString()}`;
+                        }
+                    });
+                }
+
+                document.querySelectorAll('#adminNavTabs .option-btn').forEach(btn => {
+                    if (btn.getAttribute('data-tab-role') === rolActivo) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                });
+
+                window.toggleSubVista('guias');
+            };
+
+            // Cambiar entre Retícula de Guías y Visor PDF
+            window.toggleSubVista = function(tipo) {
+                const secGrid = document.getElementById('section-guias-grid');
+                const secPdf = document.getElementById('section-pdf-viewer');
+                const btnMain = document.getElementById('btnMainRole');
+                const btnPdf = document.getElementById('btnPdfBuscador');
+
+                if (tipo === 'pdf' || tipo === 'buscador') {
+                    if (secGrid) secGrid.style.display = 'none';
+                    if (secPdf) secPdf.style.display = 'block';
+                    if (btnMain) btnMain.className = 'option-btn';
+                    if (btnPdf) btnPdf.className = 'option-btn active';
+                } else {
+                    if (secGrid) secGrid.style.display = 'block';
+                    if (secPdf) secPdf.style.display = 'none';
+                    if (btnMain) btnMain.className = 'option-btn active';
+                    if (btnPdf) btnPdf.className = 'option-btn';
+                }
+            };
+
+            // Inicialización según Administrador o Rol Específico
+            if (userRol === 'administracion') {
+                if (adminNavTabs) adminNavTabs.style.display = 'flex';
+                if (subRoleNav) subRoleNav.style.display = 'none';
+                window.cambiarRolVista('administracion');
+            } else {
+                if (adminNavTabs) adminNavTabs.style.display = 'none';
+                if (subRoleNav) subRoleNav.style.display = 'flex';
+                if (btnMainRole) {
+                    btnMainRole.innerText = nombresRoles[userRol] || 'Guías del Rol';
+                    btnMainRole.className = 'option-btn active';
+                }
+                if (btnPdfBuscador) {
+                    btnPdfBuscador.className = 'option-btn';
+                }
+                window.cambiarRolVista(userRol);
+            }
+
+            // Desplegables de las tarjetas
+            document.querySelectorAll('.has-dropdown .submenu-trigger').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const parent = btn.closest('.menu-item');
+                    const dropdown = parent.querySelector('.dropdown-content');
+                    const isOpen = dropdown.classList.contains('open');
+
+                    document.querySelectorAll('.dropdown-content.open').forEach(d => d.classList.remove('open'));
+                    if (!isOpen && dropdown) dropdown.classList.add('open');
+                });
+            });
+
+            document.addEventListener('click', () => {
+                document.querySelectorAll('.dropdown-content.open').forEach(d => d.classList.remove('open'));
+            });
+
+            // Lógica del botón "Volver arriba"
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            if (backToTopBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.style.display = 'flex';
+                    } else {
+                        backToTopBtn.style.display = 'none';
+                    }
+                });
+
+                backToTopBtn.addEventListener('click', () => {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

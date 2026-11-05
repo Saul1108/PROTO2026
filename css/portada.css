@@ -1,0 +1,496 @@
+/* --- VARIABLES & RESET --- */
+:root {
+    --primary-bg: #f2ede9;
+    --accent-beige: #c5a989;
+    --accent-hover: #b09372;
+    --text-dark: #333333;
+    --white: #ffffff;
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+.main-header {
+    background-color: #000000;
+    border-bottom: 1px solid #ffffff;
+    padding: 15px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo .brand {
+    color: #ffffff;
+    font-size: 2.2em;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.header-logo .separator {
+    color: #ffffff;
+    font-size: 2.5em;
+    font-weight: 300;
+    margin: 0 15px;
+}
+
+.header-logo .tagline {
+    color: #ffffff;
+    font-size: 0.9em;
+    line-height: 1.2;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.logo-link:hover {
+    opacity: 0.85;
+}
+
+.header-nav {
+    display: flex;
+    gap: 40px;
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+    position: relative;
+    padding: 10px 0;
+    text-align: center;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: var(--accent-beige);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.header-nav a:hover::after {
+    transform: scaleX(1);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff;
+    min-height: 44px;
+    min-width: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.mobile-menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+
+/* ============================================================
+   BOTÓN CTA (BEIGE)
+============================================================ */
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #c5a989;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.9rem 2.2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 50px;
+}
+
+.cta-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+.cta-btn i {
+    font-size: 1.3rem;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.site-footer {
+    background-color: #000000;
+    color: white;
+    padding: 18px 5%;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid #ffffff;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer-logo {
+    height: 30px;
+}
+
+.footer-rights {
+    font-size: 0.85rem;
+    color: #ffffff;
+}
+
+/* ============================================================
+   PANEL DE ACCESIBILIDAD
+============================================================ */
+.acc-wrapper {
+    position: fixed;
+    right: 0;
+    top: 25%;
+    transform: translateY(-50%);
+    z-index: 99999;
+}
+
+.acc-button {
+    background: #c5a989;
+    color: white;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 0 0 10px;
+    font-size: 26px;
+    cursor: pointer;
+    transition: background .3s;
+}
+
+.acc-button:hover {
+    background: var(--accent-hover);
+}
+
+.acc-panel {
+    width: 260px;
+    background: white;
+    color: #333;
+    border-radius: 10px 0 0 10px;
+    position: absolute;
+    right: -260px;
+    top: 0;
+    box-shadow: -4px 4px 20px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease;
+}
+
+.acc-panel.open {
+    right: 55px;
+}
+
+.acc-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #c5a989;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    border-top-left-radius: 10px;
+}
+
+.acc-content {
+    padding: 18px;
+}
+
+.font-size-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.fs-btn {
+    border: 1px solid #aaa;
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: #f2f2f2;
+    cursor: pointer;
+}
+
+.darkmode-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block !important;
+    width: 42px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background: #bbb;
+    border-radius: 22px;
+    transition: .3s;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+input:checked + .slider {
+    background: #c5a989;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* ============================================================
+   CONTENEDOR Y TÍTULO (Fuerza exacta de 3 renglones)
+============================================================ */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.8rem;
+    max-width: 1200px;
+    width: 100%;
+    text-align: left;
+    padding-left: 2rem;
+}
+
+/* Reducimos el max-width a 450px para forzar exactamente el salto de 3 líneas */
+.welcome-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a0a2e;
+    line-height: 1.25;
+    max-width: 450px; 
+    transition: color 0.3s ease;
+}
+
+/* ============================================================
+   IMAGEN DE FONDO Y MODO CLARO (Base #f2ede9)
+============================================================ */
+.hero-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100vh - 70px - 65px);
+    min-height: unset;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 5%;
+    background-color: #f2ede9; 
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../images/portada2026.png');
+    background-repeat: no-repeat;
+    background-size: 78% auto; 
+    background-position: 100% center; 
+    z-index: 0;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 25% 50%, 
+                rgba(242, 237, 233, 0.98) 0%, 
+                rgba(242, 237, 233, 0.90) 35%, 
+                rgba(242, 237, 233, 0.40) 65%, 
+                transparent 85%);
+    z-index: 1;
+    transition: background 0.3s ease;
+}
+
+/* ============================================================
+   MODO NOCTURNO (Unificado y estético sin cortes a la izquierda)
+============================================================ */
+body.dark-mode {
+    background: #000000 !important;
+    color: white !important;
+}
+
+/* Fondo base oscuro uniforme para evitar cualquier división o corte */
+body.dark-mode .hero-section {
+    background-color: #0b0b0b !important;
+}
+
+/* Difuminado suave en los bordes de la ilustración para integrarla por completo */
+body.dark-mode .hero-section::before {
+    -webkit-mask-image: radial-gradient(circle at 65% 50%, black 50%, transparent 95%);
+    mask-image: radial-gradient(circle at 65% 50%, black 50%, transparent 95%);
+}
+
+/* Degradado radial oscuro totalmente fundido con el fondo #0b0b0b */
+body.dark-mode .hero-section::after {
+    background: radial-gradient(circle at 25% 50%, 
+                #0b0b0b 0%, 
+                rgba(11, 11, 11, 0.92) 40%, 
+                rgba(11, 11, 11, 0.40) 70%, 
+                transparent 90%) !important;
+}
+
+body.dark-mode .welcome-title {
+    color: #ffffff !important;
+}
+
+body.dark-mode .site-footer {
+    border-top: 1px solid #ffffff !important;
+}
+
+body.dark-mode .cta-btn {
+    background: #c5a989 !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 22px 6px rgba(197, 169, 137, 0.4) !important;
+}
+
+body.dark-mode .cta-btn:hover {
+    background: #d8bfa0 !important;
+    box-shadow: 0 0 30px 10px rgba(197, 169, 137, 0.6) !important;
+}
+
+body.dark-mode .acc-panel {
+    background: #1a1a1a !important;
+    color: white !important;
+}
+
+body.dark-mode .acc-header {
+    background: #c5a989 !important;
+}
+
+body.dark-mode .fs-btn {
+    background: #333 !important;
+    color: #fff !important;
+    border-color: #555 !important;
+}
+
+
+/* ============================================================
+   RESPONSIVO
+============================================================ */
+@media (max-width: 800px) {
+    .main-header {
+        padding: 15px 20px;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .header-logo .tagline {
+        display: none;
+    }
+
+    .header-nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background: #000;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    .header-nav.active {
+        display: flex;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .welcome-title {
+        font-size: 1.6rem;
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenida - INFOMEX-INE</title>
+
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/portada.css">
+</head>
+
+<body>
+
+    <header id="main-header"></header>
+
+    <main class="hero-section">
+        <div id="acc-wrapper"></div>
+
+        <div class="hero-content">
+            <h2 class="welcome-title">Te damos la bienvenida al centro de ayuda de INFOMEX-INE</h2>
+
+            <a href="guias.html" class="cta-btn" id="ctaGuiasUsuario">
+                <i class="fas fa-book-open"></i>
+                Guías de usuario
+            </a>
+        </div>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <!-- Carga el script centralizado de componentes -->
+    <script src="componentes/layout.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            // Manejo de tus 6 roles para el flujo interno de contenido (ej. guias.html)
+            const userRol = urlParams.get('rol') || localStorage.getItem('rolSesion') || 'administracion';
+            localStorage.setItem('rolSesion', userRol);
+
+            // Actualizar el botón central para que conserve el rol activo hacia guías
+            const ctaGuias = document.getElementById('ctaGuiasUsuario');
+            if (ctaGuias) {
+                ctaGuias.href = `guias.html?rol=${userRol}`;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
